@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Premiers pas en français | Teacher Débora</title>
+  <style>
+    :root {
+      --bg: #f8f3ed;
+      --paper: rgba(255, 255, 255, 0.82);
+      --paper-strong: #ffffff;
+      --ink: #2b211c;
+      --muted: #7a6860;
+      --accent: #9f6048;
+      --accent-dark: #6f3f31;
+      --accent-soft: #f1ded5;
+      --rose: #dfb9aa;
+      --green: #768f72;
+      --green-soft: #e7eee4;
+      --gold: #d5a84f;
+      --danger: #b95858;
+      --shadow: 0 20px 50px rgba(80, 55, 40, 0.13);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 15px;
+      --max: 1180px;
+      --font-title: Georgia, 'Times New Roman', serif;
+      --font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(223, 185, 170, 0.55), transparent 32rem),
+        radial-gradient(circle at 80% 12%, rgba(213, 168, 79, 0.25), transparent 28rem),
+        linear-gradient(135deg, #f8f3ed 0%, #fbf7f1 52%, #f3e8df 100%);
+      min-height: 100vh;
+      line-height: 1.55;
+    }
+
+    .shell {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 70px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      background: linear-gradient(135deg, rgba(255,255,255,.86), rgba(255,255,255,.56));
+      box-shadow: var(--shadow);
+      border-radius: var(--radius-xl);
+      padding: clamp(26px, 5vw, 54px);
+      margin-bottom: 24px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -40% auto auto 52%;
+      width: 520px;
+      height: 520px;
+      background: radial-gradient(circle, rgba(159, 96, 72, .2), transparent 62%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      font-weight: 750;
+      font-size: .87rem;
+      letter-spacing: .02em;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      line-height: 1.08;
+    }
+
+    h1 {
+      position: relative;
+      z-index: 1;
+      margin-top: 20px;
+      font-family: var(--font-title);
+      font-size: clamp(2.25rem, 6vw, 5.2rem);
+      letter-spacing: -.05em;
+    }
+
+    .hero p {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 2.2vw, 1.18rem);
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      margin: 0 0 24px;
+      padding: 12px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.78);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,.82);
+      box-shadow: 0 10px 30px rgba(74, 48, 35, .08);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      overflow-x: auto;
+    }
+
+    .toolbar a, .toolbar button, .btn {
+      appearance: none;
+      border: 0;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-weight: 750;
+      font-size: .92rem;
+      color: var(--accent-dark);
+      background: var(--accent-soft);
+      transition: transform .18s ease, background .18s ease, color .18s ease;
+    }
+
+    .toolbar a:hover, .toolbar button:hover, .btn:hover {
+      transform: translateY(-1px);
+      background: var(--accent);
+      color: white;
+    }
+
+    .toolbar .stop {
+      background: #f3eeee;
+      color: #895353;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .card, .section {
+      border-radius: var(--radius-xl);
+      background: var(--paper);
+      border: 1px solid rgba(255,255,255,.78);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .section {
+      padding: clamp(22px, 4vw, 36px);
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .section-title h2 {
+      font-family: var(--font-title);
+      font-size: clamp(1.65rem, 3.5vw, 2.7rem);
+      letter-spacing: -.035em;
+    }
+
+    .section-title p {
+      max-width: 640px;
+      margin: 8px 0 0;
+      color: var(--muted);
+    }
+
+    .span-12 { grid-column: span 12; }
+    .span-8 { grid-column: span 8; }
+    .span-6 { grid-column: span 6; }
+    .span-4 { grid-column: span 4; }
+    .span-3 { grid-column: span 3; }
+
+    .intro-box {
+      padding: 24px;
+      background: linear-gradient(135deg, rgba(255,255,255,.9), rgba(241,222,213,.56));
+      border-radius: 24px;
+      border: 1px solid rgba(159, 96, 72, .15);
+    }
+
+    .french {
+      font-size: clamp(1.12rem, 2.2vw, 1.45rem);
+      font-weight: 750;
+      letter-spacing: -.015em;
+      color: #241b17;
+    }
+
+    .translation {
+      margin-top: 8px;
+      color: var(--muted);
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .btn.primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn.secondary {
+      background: var(--green-soft);
+      color: #405b3c;
+    }
+
+    .btn.ghost {
+      background: rgba(255,255,255,.8);
+      color: var(--accent-dark);
+      border: 1px solid rgba(159,96,72,.2);
+    }
+
+    .btn.danger {
+      background: #f5e5e3;
+      color: var(--danger);
+    }
+
+    .mini-card {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.74);
+      border: 1px solid rgba(255,255,255,.9);
+      min-height: 100%;
+    }
+
+    .mini-card h3 {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+      font-weight: 750;
+    }
+
+    .hard-expression .french {
+      font-size: 1.12rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(159,96,72,.16);
+      color: var(--accent-dark);
+      font-weight: 700;
+      font-size: .9rem;
+    }
+
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .formula-card {
+      position: relative;
+      overflow: hidden;
+      padding: 20px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.76);
+      border: 1px solid rgba(255,255,255,.88);
+      min-height: 210px;
+    }
+
+    .formula-card::after {
+      content: attr(data-index);
+      position: absolute;
+      right: 16px;
+      top: 10px;
+      font-family: var(--font-title);
+      font-size: 4.4rem;
+      color: rgba(159,96,72,.08);
+      line-height: 1;
+    }
+
+    .formula-card .tag {
+      display: inline-flex;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--green-soft);
+      color: #496744;
+      font-weight: 800;
+      font-size: .8rem;
+      margin-bottom: 12px;
+    }
+
+    .formula-card code {
+      display: block;
+      font-family: var(--font-body);
+      font-weight: 900;
+      font-size: 1.13rem;
+      color: var(--accent-dark);
+      background: transparent;
+      margin-bottom: 10px;
+    }
+
+    .formula-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .collocation-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .collocation-card {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.75);
+      border: 1px solid rgba(255,255,255,.88);
+      display: grid;
+      grid-template-columns: minmax(220px, .78fr) minmax(320px, 1.22fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .infinitive-side {
+      padding-right: 12px;
+      border-right: 1px solid rgba(159,96,72,.13);
+    }
+
+    .form-side {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .form-card {
+      min-height: 100%;
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(248,243,237,.78);
+      border: 1px solid rgba(159,96,72,.12);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .form-tag {
+      display: inline-flex;
+      width: fit-content;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: var(--green-soft);
+      color: #496744;
+      font-size: .76rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .form-card .french {
+      font-size: clamp(1.02rem, 1.8vw, 1.24rem);
+    }
+
+    .form-card .icon-btn {
+      align-self: flex-start;
+    }
+
+    .verb-label {
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--accent);
+      font-weight: 900;
+      margin-bottom: 6px;
+    }
+
+    .collocation-card .question {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(159,96,72,.12);
+      color: #3b302b;
+      font-size: .95rem;
+    }
+
+    .icon-btn {
+      appearance: none;
+      border: 0;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      cursor: pointer;
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      font-size: 1.1rem;
+      transition: transform .18s ease, background .18s ease, color .18s ease;
+    }
+
+    .icon-btn:hover {
+      transform: scale(1.04);
+      background: var(--accent);
+      color: white;
+    }
+
+    .builder {
+      display: grid;
+      grid-template-columns: minmax(260px, .95fr) minmax(300px, 1.05fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .panel {
+      padding: 20px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.76);
+      border: 1px solid rgba(255,255,255,.88);
+    }
+
+    label {
+      display: block;
+      font-size: .88rem;
+      font-weight: 850;
+      color: var(--accent-dark);
+      margin: 14px 0 7px;
+    }
+
+    select, input[type="text"] {
+      width: 100%;
+      padding: 13px 14px;
+      border-radius: 15px;
+      border: 1px solid rgba(159,96,72,.22);
+      background: rgba(255,255,255,.86);
+      color: var(--ink);
+      font: inherit;
+      outline: none;
+    }
+
+    select:focus, input[type="text"]:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(159,96,72,.13);
+    }
+
+    .result-card {
+      min-height: 315px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 14px;
+      background: linear-gradient(135deg, rgba(255,255,255,.88), rgba(231,238,228,.78));
+    }
+
+    .result-title {
+      color: var(--muted);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-size: .78rem;
+    }
+
+    .question-output {
+      font-family: var(--font-title);
+      font-size: clamp(1.8rem, 4.2vw, 3rem);
+      line-height: 1.05;
+      letter-spacing: -.035em;
+    }
+
+    .answer-output {
+      font-size: 1.08rem;
+      color: var(--muted);
+    }
+
+    .quiz-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .quiz-item {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.75);
+      border: 1px solid rgba(255,255,255,.88);
+    }
+
+    .quiz-item strong {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .choices {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .choice {
+      border: 1px solid rgba(159,96,72,.2);
+      background: rgba(255,255,255,.74);
+      color: var(--ink);
+      cursor: pointer;
+      padding: 9px 11px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: transform .16s ease, background .16s ease, color .16s ease;
+    }
+
+    .choice:hover {
+      transform: translateY(-1px);
+      background: var(--accent-soft);
+    }
+
+    .choice.correct {
+      background: var(--green);
+      color: white;
+      border-color: var(--green);
+    }
+
+    .choice.wrong {
+      background: #f3d5d1;
+      color: #7d3737;
+      border-color: #e2aaa3;
+    }
+
+    .feedback {
+      margin-top: 10px;
+      color: var(--muted);
+      font-weight: 750;
+    }
+
+    .speaking-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 20px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(255,255,255,.84), rgba(241,222,213,.58));
+      border: 1px solid rgba(159,96,72,.12);
+    }
+
+    .speaking-card .french {
+      font-family: var(--font-title);
+      font-size: clamp(1.65rem, 4vw, 2.7rem);
+      line-height: 1.08;
+    }
+
+    .note {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(231, 238, 228, .8);
+      color: #405b3c;
+      font-weight: 650;
+    }
+
+    .tiny {
+      font-size: .88rem;
+      color: var(--muted);
+    }
+
+    .voice-settings {
+      display: grid;
+      grid-template-columns: 1fr 150px 150px;
+      gap: 10px;
+      align-items: end;
+      margin-top: 18px;
+    }
+
+    .voice-settings label { margin-top: 0; }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      margin-top: 32px;
+      font-size: .95rem;
+    }
+
+    @media (max-width: 900px) {
+      .span-8, .span-6, .span-4, .span-3 { grid-column: span 12; }
+      .formula-grid, .collocation-grid, .builder { grid-template-columns: 1fr; }
+      .voice-settings { grid-template-columns: 1fr; }
+      .section-title { flex-direction: column; }
+    }
+
+    @media (max-width: 560px) {
+      .shell { width: min(100% - 20px, var(--max)); padding-top: 12px; }
+      .hero, .section { border-radius: 22px; }
+      .toolbar { top: 0; border-radius: 0 0 20px 20px; margin-left: -10px; margin-right: -10px; }
+      .intro-box, .mini-card, .formula-card, .panel, .quiz-item, .speaking-card, .collocation-card { border-radius: 17px; }
+      .collocation-card, .speaking-card { grid-template-columns: 1fr; }
+      .infinitive-side { padding-right: 0; padding-bottom: 12px; border-right: 0; border-bottom: 1px solid rgba(159,96,72,.13); }
+      .form-side { grid-template-columns: 1fr; }
+      .icon-btn { width: 46px; height: 46px; }
+      .toolbar a, .toolbar button, .btn { font-size: .88rem; padding: 9px 12px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="hero" id="topo">
+      <span class="eyebrow">🇫🇷 Premiers pas • francês do zero com lógica</span>
+      <h1>Primeiros passos no francês</h1>
+      <p>
+        Treinamento para ouvir sua apresentação, fixar expressões difíceis e construir perguntas simples no presente usando estruturas repetíveis — sem decorar frases soltas.
+      </p>
+    </header>
+
+    <nav class="toolbar" aria-label="Navegação do treinamento">
+      <a href="#apresentacao">Apresentação</a>
+      <a href="#estruturas">Estruturas</a>
+      <a href="#collocations">Collocations</a>
+      <a href="#construtor">Construtor</a>
+      <a href="#quiz">Quiz</a>
+      <a href="#fala">Speaking</a>
+      <button class="stop" onclick="stopAudio()">■ Parar áudio</button>
+    </nav>
+
+    <section class="section" id="apresentacao">
+      <div class="section-title">
+        <div>
+          <h2>1. Sua apresentação — só para ouvir</h2>
+          <p>Essa parte não é para praticar vocabulário novo. É só para ouvir várias vezes, repetir e ganhar familiaridade com o som.</p>
+        </div>
+      </div>
+
+      <div class="intro-box">
+        <div class="french" id="introText">
+          Je parle un peu français. Je connais quelques mots en français. Par exemple : bonjour, je m’appelle Débora, j’ai vingt-huit ans, je suis professeure d’anglais et j’habite au Brésil. Je parle portugais et anglais. J’aime apprendre et enseigner. Je veux apprendre à parler français naturellement.
+        </div>
+        <div class="translation">
+          Eu falo um pouco de francês. Conheço algumas palavras em francês. Por exemplo: olá, eu me chamo Débora, tenho 28 anos, sou professora de inglês e moro no Brasil. Falo português e inglês. Gosto de aprender e ensinar. Quero aprender a falar francês naturalmente.
+        </div>
+        <div class="controls">
+          <button class="btn primary" onclick="speakById('introText')">🔊 Ouvir normal</button>
+          <button class="btn secondary" onclick="speakById('introText', 0.72)">🐢 Ouvir devagar</button>
+          <button class="btn ghost" onclick="pauseAudio()">⏸ Pausar</button>
+          <button class="btn ghost" onclick="resumeAudio()">▶ Continuar</button>
+        </div>
+
+        <div class="voice-settings" aria-label="Configurações de voz">
+          <div>
+            <label for="voiceSelect">Voz francesa disponível no seu navegador</label>
+            <select id="voiceSelect"></select>
+          </div>
+          <div>
+            <label for="rateRange">Velocidade</label>
+            <input id="rateRange" type="range" min="0.55" max="1.15" step="0.05" value="0.85" />
+          </div>
+          <div>
+            <label for="pitchRange">Tom</label>
+            <input id="pitchRange" type="range" min="0.7" max="1.25" step="0.05" value="1" />
+          </div>
+        </div>
+        <p class="tiny">Observação: a qualidade da voz depende do navegador e das vozes instaladas no dispositivo.</p>
+      </div>
+
+      <div class="grid" style="margin-top:18px;">
+        <article class="mini-card hard-expression span-4">
+          <h3>Expressão difícil 1</h3>
+          <div class="french" id="hard1">J’ai vingt-huit ans.</div>
+          <div class="translation">Tenho 28 anos.</div>
+          <div class="controls"><button class="btn primary" onclick="speakById('hard1')">🔊 Ouvir</button></div>
+        </article>
+        <article class="mini-card hard-expression span-4">
+          <h3>Expressão difícil 2</h3>
+          <div class="french" id="hard2">J’aime apprendre et enseigner.</div>
+          <div class="translation">Eu amo/gosto de aprender e ensinar.</div>
+          <div class="controls"><button class="btn primary" onclick="speakById('hard2')">🔊 Ouvir</button></div>
+        </article>
+        <article class="mini-card hard-expression span-4">
+          <h3>Expressão difícil 3</h3>
+          <div class="french" id="hard3">Je veux apprendre à parler français naturellement.</div>
+          <div class="translation">Quero aprender a falar francês naturalmente.</div>
+          <div class="controls"><button class="btn primary" onclick="speakById('hard3')">🔊 Ouvir</button></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="estruturas">
+      <div class="section-title">
+        <div>
+          <h2>2. A lógica das perguntas no presente</h2>
+          <p>Em inglês você pensa em “do you / what do you / where do you”. Em francês, para começar rápido, vamos usar estas estruturas fixas.</p>
+        </div>
+      </div>
+
+      <div class="formula-grid">
+        <article class="formula-card" data-index="01">
+          <span class="tag">sim / não</span>
+          <code>Est-ce que tu + verbo... ?</code>
+          <p><strong>Est-ce que tu parles français ?</strong><br>Você fala francês?</p>
+          <button class="icon-btn" onclick="speak('Est-ce que tu parles français ?')" aria-label="Ouvir exemplo">🔊</button>
+        </article>
+        <article class="formula-card" data-index="02">
+          <span class="tag">o que você...</span>
+          <code>Qu’est-ce que tu + verbo... ?</code>
+          <p><strong>Qu’est-ce que tu fais ?</strong><br>O que você faz?</p>
+          <button class="icon-btn" onclick="speak('Qu’est-ce que tu fais ?')" aria-label="Ouvir exemplo">🔊</button>
+        </article>
+        <article class="formula-card" data-index="03">
+          <span class="tag">onde você...</span>
+          <code>Où est-ce que tu + verbo... ?</code>
+          <p><strong>Où est-ce que tu habites ?</strong><br>Onde você mora?</p>
+          <button class="icon-btn" onclick="speak('Où est-ce que tu habites ?')" aria-label="Ouvir exemplo">🔊</button>
+        </article>
+        <article class="formula-card" data-index="04">
+          <span class="tag">quando você...</span>
+          <code>Quand est-ce que tu + verbo... ?</code>
+          <p><strong>Quand est-ce que tu étudies ?</strong><br>Quando você estuda?</p>
+          <button class="icon-btn" onclick="speak('Quand est-ce que tu étudies ?')" aria-label="Ouvir exemplo">🔊</button>
+        </article>
+        <article class="formula-card" data-index="05">
+          <span class="tag">como você...</span>
+          <code>Comment est-ce que tu + verbo... ?</code>
+          <p><strong>Comment est-ce que tu apprends ?</strong><br>Como você aprende?</p>
+          <button class="icon-btn" onclick="speak('Comment est-ce que tu apprends ?')" aria-label="Ouvir exemplo">🔊</button>
+        </article>
+        <article class="formula-card" data-index="06">
+          <span class="tag">por que você...</span>
+          <code>Pourquoi est-ce que tu + verbo... ?</code>
+          <p><strong>Pourquoi est-ce que tu apprends le français ?</strong><br>Por que você aprende francês?</p>
+          <button class="icon-btn" onclick="speak('Pourquoi est-ce que tu apprends le français ?')" aria-label="Ouvir exemplo">🔊</button>
+        </article>
+      </div>
+
+      <div class="note">
+        Atalho importante: no francês falado, também existe a pergunta com entonação: <strong>Tu habites où ?</strong> / <strong>Tu fais quoi ?</strong>. Mas neste treino vamos usar <strong>est-ce que tu</strong> porque ele dá uma “fórmula” clara para construir perguntas.
+      </div>
+    </section>
+
+    <section class="section" id="collocations">
+      <div class="section-title">
+        <div>
+          <h2>3. Collocations + conjugação útil</h2>
+          <p>À esquerda fica o infinitivo, que é a base da combinação. À direita ficam as versões conjugadas mais úteis para conversa: <strong>je</strong> e <strong>tu</strong>, cada uma com áudio.</p>
+        </div>
+      </div>
+
+      <div class="collocation-grid" id="collocationGrid"></div>
+    </section>
+
+    <section class="section" id="construtor">
+      <div class="section-title">
+        <div>
+          <h2>4. Construtor de perguntas</h2>
+          <p>Escolha uma estrutura e uma collocation. O treinamento monta a pergunta e já te dá uma resposta simples.</p>
+        </div>
+      </div>
+
+      <div class="builder">
+        <div class="panel">
+          <label for="starterSelect">Estrutura</label>
+          <select id="starterSelect"></select>
+
+          <label for="chunkSelect">Collocation / complemento</label>
+          <select id="chunkSelect"></select>
+
+          <div class="controls">
+            <button class="btn primary" onclick="buildQuestion()">Montar pergunta</button>
+            <button class="btn secondary" onclick="randomQuestion()">Gerar aleatória</button>
+          </div>
+          <p class="tiny">Dica: repare que você troca só o começo da pergunta e depois encaixa um pedaço pronto.</p>
+        </div>
+
+        <div class="panel result-card">
+          <span class="result-title">Pergunta criada</span>
+          <div class="question-output" id="questionOutput">Est-ce que tu parles français ?</div>
+          <div class="answer-output" id="answerOutput">Resposta: Oui, je parle un peu français.</div>
+          <div class="controls">
+            <button class="btn primary" onclick="speakById('questionOutput')">🔊 Ouvir pergunta</button>
+            <button class="btn ghost" onclick="speakById('answerOutput')">🔊 Ouvir resposta</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="quiz">
+      <div class="section-title">
+        <div>
+          <h2>5. Quiz rápido: escolha a estrutura</h2>
+          <p>Aqui a ideia não é decorar pergunta inteira. É reconhecer qual começo combina com a intenção.</p>
+        </div>
+      </div>
+      <div class="quiz-list" id="quizList"></div>
+      <div class="controls">
+        <button class="btn secondary" onclick="resetQuiz()">Refazer quiz</button>
+      </div>
+    </section>
+
+    <section class="section" id="fala">
+      <div class="section-title">
+        <div>
+          <h2>6. Rodada de speaking</h2>
+          <p>Clique para gerar uma pergunta. Ouça, repita e responda em voz alta usando a resposta-modelo.</p>
+        </div>
+      </div>
+
+      <div class="speaking-card">
+        <div>
+          <div class="french" id="speakingQuestion">Où est-ce que tu habites ?</div>
+          <div class="translation" id="speakingAnswer">Resposta-modelo: J’habite au Brésil.</div>
+        </div>
+        <div class="controls">
+          <button class="btn primary" onclick="speakById('speakingQuestion')">🔊 Ouvir</button>
+          <button class="btn secondary" onclick="nextSpeaking()">Nova pergunta</button>
+        </div>
+      </div>
+
+      <div class="note">
+        Fórmula de treino: <strong>ouvir → repetir a pergunta → responder → ouvir a resposta-modelo → repetir a resposta</strong>.
+      </div>
+    </section>
+
+    <footer class="footer">
+      Feito para estudar francês em pequenos blocos: áudio, estrutura, collocation e speaking.
+    </footer>
+  </main>
+
+  <script>
+    const collocations = [
+      { verb: 'être', label: 'ser / estar', chunk: 'être professeure', je: 'je suis professeure', tu: 'tu es professeure', question: 'Est-ce que tu es professeure ?', answer: 'Oui, je suis professeure d’anglais.', pt: 'ser professora' },
+      { verb: 'être', label: 'ser / estar', chunk: 'être fatiguée', je: 'je suis fatiguée', tu: 'tu es fatiguée', question: 'Est-ce que tu es fatiguée ?', answer: 'Oui, je suis un peu fatiguée.', pt: 'estar cansada' },
+      { verb: 'avoir', label: 'ter', chunk: 'avoir vingt-huit ans', je: 'j’ai vingt-huit ans', tu: 'tu as vingt-huit ans', question: 'Est-ce que tu as vingt-huit ans ?', answer: 'Oui, j’ai vingt-huit ans.', pt: 'ter 28 anos' },
+      { verb: 'avoir', label: 'ter', chunk: 'avoir une voiture', je: 'j’ai une voiture', tu: 'tu as une voiture', question: 'Est-ce que tu as une voiture ?', answer: 'Non, je n’ai pas de voiture.', pt: 'ter um carro' },
+      { verb: 'parler', label: 'falar', chunk: 'parler français', je: 'je parle français', tu: 'tu parles français', question: 'Est-ce que tu parles français ?', answer: 'Oui, je parle un peu français.', pt: 'falar francês' },
+      { verb: 'parler', label: 'falar', chunk: 'parler anglais', je: 'je parle anglais', tu: 'tu parles anglais', question: 'Est-ce que tu parles anglais ?', answer: 'Oui, je parle anglais.', pt: 'falar inglês' },
+      { verb: 'habiter', label: 'morar', chunk: 'habiter au Brésil', je: 'j’habite au Brésil', tu: 'tu habites au Brésil', question: 'Est-ce que tu habites au Brésil ?', answer: 'Oui, j’habite au Brésil.', pt: 'morar no Brasil' },
+      { verb: 'habiter', label: 'morar', chunk: 'habiter à Campos', je: 'j’habite à Campos', tu: 'tu habites à Campos', question: 'Est-ce que tu habites à Campos ?', answer: 'Oui, j’habite à Campos.', pt: 'morar em Campos' },
+      { verb: 'aimer', label: 'gostar / amar', chunk: 'aimer apprendre', je: 'j’aime apprendre', tu: 'tu aimes apprendre', question: 'Est-ce que tu aimes apprendre ?', answer: 'Oui, j’aime apprendre.', pt: 'gostar de aprender' },
+      { verb: 'aimer', label: 'gostar / amar', chunk: 'aimer enseigner', je: 'j’aime enseigner', tu: 'tu aimes enseigner', question: 'Est-ce que tu aimes enseigner ?', answer: 'Oui, j’aime enseigner.', pt: 'gostar de ensinar' },
+      { verb: 'vouloir', label: 'querer', chunk: 'vouloir apprendre le français', je: 'je veux apprendre le français', tu: 'tu veux apprendre le français', question: 'Est-ce que tu veux apprendre le français ?', answer: 'Oui, je veux apprendre le français.', pt: 'querer aprender francês' },
+      { verb: 'vouloir', label: 'querer', chunk: 'vouloir parler naturellement', je: 'je veux parler naturellement', tu: 'tu veux parler naturellement', question: 'Est-ce que tu veux parler naturellement ?', answer: 'Oui, je veux parler naturellement.', pt: 'querer falar naturalmente' },
+      { verb: 'faire', label: 'fazer', chunk: 'faire de l’exercice', je: 'je fais de l’exercice', tu: 'tu fais de l’exercice', question: 'Est-ce que tu fais de l’exercice ?', answer: 'Oui, je fais de l’exercice.', pt: 'fazer exercício' },
+      { verb: 'faire', label: 'fazer', chunk: 'faire une pause', je: 'je fais une pause', tu: 'tu fais une pause', question: 'Est-ce que tu fais une pause ?', answer: 'Oui, je fais une pause.', pt: 'fazer uma pausa' },
+      { verb: 'manger', label: 'comer', chunk: 'manger du chocolat', je: 'je mange du chocolat', tu: 'tu manges du chocolat', question: 'Est-ce que tu manges du chocolat ?', answer: 'Oui, je mange du chocolat.', pt: 'comer chocolate' },
+      { verb: 'manger', label: 'comer', chunk: 'manger quelque chose', je: 'je mange quelque chose', tu: 'tu manges quelque chose', question: 'Qu’est-ce que tu manges ?', answer: 'Je mange quelque chose de simple.', pt: 'comer alguma coisa' },
+      { verb: 'boire', label: 'beber', chunk: 'boire du café', je: 'je bois du café', tu: 'tu bois du café', question: 'Est-ce que tu bois du café ?', answer: 'Oui, je bois du café.', pt: 'beber café' },
+      { verb: 'boire', label: 'beber', chunk: 'boire de l’eau', je: 'je bois de l’eau', tu: 'tu bois de l’eau', question: 'Est-ce que tu bois de l’eau ?', answer: 'Oui, je bois de l’eau.', pt: 'beber água' },
+      { verb: 'apprendre', label: 'aprender', chunk: 'apprendre le français', je: 'j’apprends le français', tu: 'tu apprends le français', question: 'Est-ce que tu apprends le français ?', answer: 'Oui, j’apprends le français.', pt: 'aprender francês' },
+      { verb: 'apprendre', label: 'aprender', chunk: 'apprendre à parler', je: 'j’apprends à parler', tu: 'tu apprends à parler', question: 'Est-ce que tu apprends à parler ?', answer: 'Oui, j’apprends à parler.', pt: 'aprender a falar' }
+    ];
+
+    const starters = [
+      {
+        id: 'yesno',
+        label: 'Est-ce que tu...? | Você...?',
+        prompt: 'Est-ce que tu',
+        options: collocations.map(c => ({ text: c.tu, question: `Est-ce que ${c.tu} ?`, answer: c.answer }))
+      },
+      {
+        id: 'what',
+        label: 'Qu’est-ce que tu...? | O que você...?',
+        prompt: 'Qu’est-ce que tu',
+        options: [
+          { text: 'fais', question: 'Qu’est-ce que tu fais ?', answer: 'Je suis professeure d’anglais.' },
+          { text: 'aimes', question: 'Qu’est-ce que tu aimes ?', answer: 'J’aime apprendre et enseigner.' },
+          { text: 'veux apprendre', question: 'Qu’est-ce que tu veux apprendre ?', answer: 'Je veux apprendre le français.' },
+          { text: 'manges', question: 'Qu’est-ce que tu manges ?', answer: 'Je mange quelque chose de simple.' },
+          { text: 'bois', question: 'Qu’est-ce que tu bois ?', answer: 'Je bois du café.' },
+          { text: 'étudies', question: 'Qu’est-ce que tu étudies ?', answer: 'J’étudie le français.' }
+        ]
+      },
+      {
+        id: 'where',
+        label: 'Où est-ce que tu...? | Onde você...?',
+        prompt: 'Où est-ce que tu',
+        options: [
+          { text: 'habites', question: 'Où est-ce que tu habites ?', answer: 'J’habite au Brésil.' },
+          { text: 'travailles', question: 'Où est-ce que tu travailles ?', answer: 'Je travaille à la maison.' },
+          { text: 'étudies le français', question: 'Où est-ce que tu étudies le français ?', answer: 'J’étudie le français à la maison.' }
+        ]
+      },
+      {
+        id: 'when',
+        label: 'Quand est-ce que tu...? | Quando você...?',
+        prompt: 'Quand est-ce que tu',
+        options: [
+          { text: 'étudies', question: 'Quand est-ce que tu étudies ?', answer: 'J’étudie le matin.' },
+          { text: 'travailles', question: 'Quand est-ce que tu travailles ?', answer: 'Je travaille l’après-midi et le soir.' },
+          { text: 'fais de l’exercice', question: 'Quand est-ce que tu fais de l’exercice ?', answer: 'Je fais de l’exercice le matin.' },
+          { text: 'bois du café', question: 'Quand est-ce que tu bois du café ?', answer: 'Je bois du café le matin.' }
+        ]
+      },
+      {
+        id: 'how',
+        label: 'Comment est-ce que tu...? | Como você...?',
+        prompt: 'Comment est-ce que tu',
+        options: [
+          { text: 'apprends le français', question: 'Comment est-ce que tu apprends le français ?', answer: 'J’apprends avec des phrases et des répétitions.' },
+          { text: 'étudies', question: 'Comment est-ce que tu étudies ?', answer: 'J’étudie avec l’audio et la répétition.' },
+          { text: 'travailles', question: 'Comment est-ce que tu travailles ?', answer: 'Je travaille en ligne.' }
+        ]
+      },
+      {
+        id: 'why',
+        label: 'Pourquoi est-ce que tu...? | Por que você...?',
+        prompt: 'Pourquoi est-ce que tu',
+        options: [
+          { text: 'apprends le français', question: 'Pourquoi est-ce que tu apprends le français ?', answer: 'Parce que j’aime apprendre des langues.' },
+          { text: 'étudies le français', question: 'Pourquoi est-ce que tu étudies le français ?', answer: 'Parce que je veux parler naturellement.' },
+          { text: 'veux parler français', question: 'Pourquoi est-ce que tu veux parler français ?', answer: 'Parce que je trouve le français beau.' }
+        ]
+      }
+    ];
+
+    const quizData = [
+      { pt: 'Você fala francês?', answer: 'Est-ce que tu parles français ?', choices: ['Est-ce que tu parles français ?', 'Où est-ce que tu parles français ?', 'Pourquoi est-ce que tu parles français ?'] },
+      { pt: 'O que você faz?', answer: 'Qu’est-ce que tu fais ?', choices: ['Quand est-ce que tu fais ?', 'Qu’est-ce que tu fais ?', 'Est-ce que tu fais ?'] },
+      { pt: 'Onde você mora?', answer: 'Où est-ce que tu habites ?', choices: ['Où est-ce que tu habites ?', 'Qu’est-ce que tu habites ?', 'Comment est-ce que tu habites ?'] },
+      { pt: 'Quando você estuda?', answer: 'Quand est-ce que tu étudies ?', choices: ['Pourquoi est-ce que tu étudies ?', 'Quand est-ce que tu étudies ?', 'Est-ce que tu étudies ?'] },
+      { pt: 'Como você aprende francês?', answer: 'Comment est-ce que tu apprends le français ?', choices: ['Comment est-ce que tu apprends le français ?', 'Où est-ce que tu apprends le français ?', 'Qu’est-ce que tu apprends le français ?'] },
+      { pt: 'Por que você aprende francês?', answer: 'Pourquoi est-ce que tu apprends le français ?', choices: ['Quand est-ce que tu apprends le français ?', 'Pourquoi est-ce que tu apprends le français ?', 'Est-ce que tu apprends le français ?'] }
+    ];
+
+    let voices = [];
+
+    function populateVoices() {
+      const select = document.getElementById('voiceSelect');
+      if (!select) return;
+      voices = window.speechSynthesis ? speechSynthesis.getVoices() : [];
+      const frVoices = voices.filter(v => v.lang && v.lang.toLowerCase().startsWith('fr'));
+      select.innerHTML = '';
+      const source = frVoices.length ? frVoices : voices;
+      source.forEach((voice, index) => {
+        const option = document.createElement('option');
+        option.value = voice.name;
+        option.textContent = `${voice.name} (${voice.lang})`;
+        select.appendChild(option);
+      });
+      if (!source.length) {
+        const option = document.createElement('option');
+        option.value = '';
+        option.textContent = 'Voz padrão do navegador';
+        select.appendChild(option);
+      }
+    }
+
+    function selectedVoice() {
+      const select = document.getElementById('voiceSelect');
+      if (!select) return null;
+      return voices.find(v => v.name === select.value) || voices.find(v => v.lang && v.lang.toLowerCase().startsWith('fr')) || null;
+    }
+
+    function speak(text, customRate) {
+      if (!('speechSynthesis' in window)) {
+        alert('Seu navegador não suporta leitura de texto por voz. Tente abrir no Chrome, Edge ou Safari atualizado.');
+        return;
+      }
+      const cleanText = String(text || '').replace(/^Resposta:\s*/i, '').trim();
+      if (!cleanText) return;
+      const utterance = new SpeechSynthesisUtterance(cleanText);
+      utterance.lang = 'fr-FR';
+      utterance.rate = customRate || Number(document.getElementById('rateRange')?.value || 0.85);
+      utterance.pitch = Number(document.getElementById('pitchRange')?.value || 1);
+      const voice = selectedVoice();
+      if (voice) utterance.voice = voice;
+      speechSynthesis.cancel();
+      speechSynthesis.speak(utterance);
+    }
+
+    function speakById(id, customRate) {
+      const el = document.getElementById(id);
+      if (el) speak(el.innerText, customRate);
+    }
+
+    function stopAudio() {
+      if ('speechSynthesis' in window) speechSynthesis.cancel();
+    }
+
+    function pauseAudio() {
+      if ('speechSynthesis' in window) speechSynthesis.pause();
+    }
+
+    function resumeAudio() {
+      if ('speechSynthesis' in window) speechSynthesis.resume();
+    }
+
+    function renderCollocations() {
+      const grid = document.getElementById('collocationGrid');
+      grid.innerHTML = '';
+      collocations.forEach((item, index) => {
+        const card = document.createElement('article');
+        card.className = 'collocation-card';
+        const infinitiveId = `collocationInfinitive${index}`;
+        const jeId = `collocationJe${index}`;
+        const tuId = `collocationTu${index}`;
+        card.innerHTML = `
+          <div class="infinitive-side">
+            <div class="verb-label">${item.verb} • ${item.label}</div>
+            <div class="french" id="${infinitiveId}">${item.chunk}</div>
+            <div class="translation">${item.pt}</div>
+            <div class="controls">
+              <button class="btn ghost" onclick='speakById("${infinitiveId}")'>🔊 Ouvir infinitivo</button>
+            </div>
+          </div>
+          <div class="form-side">
+            <div class="form-card">
+              <div>
+                <span class="form-tag">Eu</span>
+                <div class="french" id="${jeId}">${item.je}</div>
+              </div>
+              <button class="icon-btn" onclick='speakById("${jeId}")' aria-label="Ouvir ${item.je}">🔊</button>
+            </div>
+            <div class="form-card">
+              <div>
+                <span class="form-tag">Você / tu</span>
+                <div class="french" id="${tuId}">${item.tu}</div>
+              </div>
+              <button class="icon-btn" onclick='speakById("${tuId}")' aria-label="Ouvir ${item.tu}">🔊</button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function initBuilder() {
+      const starterSelect = document.getElementById('starterSelect');
+      starterSelect.innerHTML = '';
+      starters.forEach(starter => {
+        const option = document.createElement('option');
+        option.value = starter.id;
+        option.textContent = starter.label;
+        starterSelect.appendChild(option);
+      });
+      starterSelect.addEventListener('change', updateChunkOptions);
+      updateChunkOptions();
+      buildQuestion();
+    }
+
+    function updateChunkOptions() {
+      const starterId = document.getElementById('starterSelect').value;
+      const starter = starters.find(s => s.id === starterId) || starters[0];
+      const chunkSelect = document.getElementById('chunkSelect');
+      chunkSelect.innerHTML = '';
+      starter.options.forEach((item, idx) => {
+        const option = document.createElement('option');
+        option.value = idx;
+        option.textContent = item.text;
+        chunkSelect.appendChild(option);
+      });
+    }
+
+    function currentSelection() {
+      const starterId = document.getElementById('starterSelect').value;
+      const starter = starters.find(s => s.id === starterId) || starters[0];
+      const idx = Number(document.getElementById('chunkSelect').value || 0);
+      return starter.options[idx] || starter.options[0];
+    }
+
+    function buildQuestion() {
+      const selected = currentSelection();
+      document.getElementById('questionOutput').innerText = selected.question;
+      document.getElementById('answerOutput').innerText = 'Resposta: ' + selected.answer;
+    }
+
+    function randomQuestion() {
+      const starterSelect = document.getElementById('starterSelect');
+      const randomStarterIndex = Math.floor(Math.random() * starters.length);
+      starterSelect.selectedIndex = randomStarterIndex;
+      updateChunkOptions();
+      const starter = starters[randomStarterIndex];
+      const randomChunkIndex = Math.floor(Math.random() * starter.options.length);
+      document.getElementById('chunkSelect').selectedIndex = randomChunkIndex;
+      buildQuestion();
+    }
+
+    function renderQuiz() {
+      const list = document.getElementById('quizList');
+      list.innerHTML = '';
+      quizData.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.className = 'quiz-item';
+        div.innerHTML = `
+          <strong>${index + 1}. Como eu pergunto: “${item.pt}”</strong>
+          <div class="choices">
+            ${item.choices.map(choice => `<button class="choice" data-answer="${item.answer}" onclick="checkChoice(this)">${choice}</button>`).join('')}
+          </div>
+          <div class="feedback"></div>
+        `;
+        list.appendChild(div);
+      });
+    }
+
+    function checkChoice(button) {
+      const parent = button.closest('.quiz-item');
+      const buttons = parent.querySelectorAll('.choice');
+      const feedback = parent.querySelector('.feedback');
+      const answer = button.dataset.answer;
+      buttons.forEach(btn => {
+        btn.disabled = true;
+        if (btn.textContent === answer) btn.classList.add('correct');
+      });
+      if (button.textContent === answer) {
+        feedback.textContent = 'Certo. Agora ouça e repita.';
+        speak(answer);
+      } else {
+        button.classList.add('wrong');
+        feedback.textContent = `Quase. A estrutura correta é: ${answer}`;
+        speak(answer);
+      }
+    }
+
+    function resetQuiz() {
+      renderQuiz();
+    }
+
+    function nextSpeaking() {
+      randomQuestion();
+      const q = document.getElementById('questionOutput').innerText;
+      const a = document.getElementById('answerOutput').innerText;
+      document.getElementById('speakingQuestion').innerText = q;
+      document.getElementById('speakingAnswer').innerText = a;
+      speak(q);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCollocations();
+      initBuilder();
+      renderQuiz();
+      populateVoices();
+      if ('speechSynthesis' in window) {
+        speechSynthesis.onvoiceschanged = populateVoices;
+      }
+    });
+  </script>
+</body>
+</html>
