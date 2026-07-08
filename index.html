@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meus Treinamentos de Idiomas</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: radial-gradient(circle at top, #2b2b45, #090910 70%);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 4rem);
+      margin-bottom: 12px;
+      font-weight: 800;
+    }
+
+    p {
+      color: #cfcfe6;
+      margin-bottom: 48px;
+      font-size: 1.1rem;
+    }
+
+    .profiles {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(180px, 1fr));
+      gap: 28px;
+    }
+
+    .profile-card {
+      text-decoration: none;
+      color: white;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 28px;
+      padding: 36px 24px;
+      transition: 0.25s ease;
+      backdrop-filter: blur(14px);
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .profile-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      background: rgba(255, 255, 255, 0.16);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      margin-bottom: 22px;
+      background: linear-gradient(135deg, #ffffff33, #ffffff11);
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+
+    .profile-card h2 {
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+
+    .profile-card span {
+      color: #b9b9d6;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 800px) {
+      .profiles {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-card {
+        min-height: 200px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <h1>Qual idioma você quer praticar hoje?</h1>
+    <p>Escolha um perfil de estudo para acessar seus treinamentos.</p>
+
+    <section class="profiles">
+      <a class="profile-card" href="frances/index.html">
+        <div class="avatar">🇫🇷</div>
+        <h2>Francês</h2>
+        <span>Primeiros passos, chunks e conversação</span>
+      </a>
+
+      <a class="profile-card" href="espanhol/index.html">
+        <div class="avatar">🇪🇸</div>
+        <h2>Espanhol</h2>
+        <span>Vocabulário, frases úteis e prática guiada</span>
+      </a>
+
+      <a class="profile-card" href="ingles-avancado/index.html">
+        <div class="avatar">🇬🇧</div>
+        <h2>Inglês Avançado</h2>
+        <span>Speaking, vocabulário e fluência</span>
+      </a>
+    </section>
+  </main>
+</body>
+</html>
