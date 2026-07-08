@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Meus Treinamentos de Idiomas</title>
 
   <style>
@@ -30,9 +31,10 @@
     }
 
     h1 {
-      font-size: clamp(2rem, 5vw, 4rem);
+      font-size: clamp(2.2rem, 5vw, 4rem);
       margin-bottom: 12px;
       font-weight: 800;
+      line-height: 1.15;
     }
 
     p {
@@ -56,11 +58,13 @@
       padding: 36px 24px;
       transition: 0.25s ease;
       backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       min-height: 260px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
     }
 
     .profile-card:hover {
@@ -76,10 +80,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 3rem;
+      font-size: 4rem;
+      line-height: 1;
       margin-bottom: 22px;
       background: linear-gradient(135deg, #ffffff33, #ffffff11);
-      border: 1px solid rgba(255,255,255,0.25);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
     }
 
     .profile-card h2 {
@@ -90,15 +96,35 @@
     .profile-card span {
       color: #b9b9d6;
       font-size: 0.95rem;
+      line-height: 1.4;
     }
 
     @media (max-width: 800px) {
+      body {
+        align-items: flex-start;
+        padding: 32px 20px;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 9vw, 3rem);
+      }
+
+      p {
+        margin-bottom: 32px;
+      }
+
       .profiles {
         grid-template-columns: 1fr;
       }
 
       .profile-card {
         min-height: 200px;
+      }
+
+      .avatar {
+        width: 96px;
+        height: 96px;
+        font-size: 3.5rem;
       }
     }
   </style>
