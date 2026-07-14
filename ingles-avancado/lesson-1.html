@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>English Teacher Language | Teacher Débora</title>
+  <style>
+    :root {
+      --bg: #f8f3ed;
+      --paper: rgba(255, 255, 255, 0.82);
+      --paper-strong: #ffffff;
+      --ink: #2b211c;
+      --muted: #7a6860;
+      --accent: #3d6b74;
+      --accent-dark: #244850;
+      --accent-soft: #dbe7e6;
+      --rose: #dfb9aa;
+      --green: #768f72;
+      --green-soft: #e7eee4;
+      --gold: #d5a84f;
+      --danger: #b95858;
+      --shadow: 0 20px 50px rgba(80, 55, 40, 0.13);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 15px;
+      --max: 1180px;
+      --font-title: Georgia, 'Times New Roman', serif;
+      --font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(61, 107, 116, 0.16), transparent 32rem),
+        radial-gradient(circle at 80% 12%, rgba(213, 168, 79, 0.22), transparent 28rem),
+        linear-gradient(135deg, #f8f3ed 0%, #fbf7f1 52%, #eef1ee 100%);
+      min-height: 100vh;
+      line-height: 1.55;
+    }
+
+    .shell {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 70px;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 18px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+    }
+    .back:hover { color: var(--accent-dark); }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      background: linear-gradient(135deg, rgba(255,255,255,.86), rgba(255,255,255,.56));
+      box-shadow: var(--shadow);
+      border-radius: var(--radius-xl);
+      padding: clamp(26px, 5vw, 54px);
+      margin-bottom: 24px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -40% auto auto 52%;
+      width: 520px;
+      height: 520px;
+      background: radial-gradient(circle, rgba(61, 107, 116, .18), transparent 62%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      font-weight: 750;
+      font-size: .87rem;
+      letter-spacing: .02em;
+    }
+
+    h1, h2, h3 { margin: 0; line-height: 1.08; }
+
+    h1 {
+      position: relative;
+      z-index: 1;
+      margin-top: 20px;
+      font-family: var(--font-title);
+      font-size: clamp(2.1rem, 5.4vw, 4rem);
+      letter-spacing: -.04em;
+    }
+
+    .hero p {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 2.2vw, 1.14rem);
+    }
+
+    .insight {
+      position: relative;
+      z-index: 1;
+      margin-top: 20px;
+      padding: 16px 18px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, rgba(255,255,255,.9), rgba(219,231,230,.6));
+      border: 1px solid rgba(61,107,116,.18);
+      max-width: 720px;
+    }
+    .insight p { margin: 0; color: var(--ink); font-size: .96rem; }
+    .insight strong { color: var(--accent-dark); }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      margin: 0 0 24px;
+      padding: 12px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.78);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,.82);
+      box-shadow: 0 10px 30px rgba(74, 48, 35, .08);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      overflow-x: auto;
+    }
+
+    .toolbar a, .toolbar button, .btn {
+      appearance: none;
+      border: 0;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-weight: 750;
+      font-size: .92rem;
+      color: var(--accent-dark);
+      background: var(--accent-soft);
+      transition: transform .18s ease, background .18s ease, color .18s ease;
+      font-family: inherit;
+    }
+
+    .toolbar a:hover, .toolbar button:hover, .btn:hover {
+      transform: translateY(-1px);
+      background: var(--accent);
+      color: white;
+    }
+
+    .toolbar .stop { background: #f3eeee; color: #895353; margin-left: auto; }
+    .toolbar #practiceBtn.is-on { background: var(--gold); color: white; }
+
+    .section {
+      border-radius: var(--radius-xl);
+      background: var(--paper);
+      border: 1px solid rgba(255,255,255,.78);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      padding: clamp(22px, 4vw, 36px);
+      margin-bottom: 24px;
+      scroll-margin-top: 96px;
+    }
+
+    .section-title { margin-bottom: 18px; }
+    .section-title h2 {
+      font-family: var(--font-title);
+      font-size: clamp(1.5rem, 3.2vw, 2.3rem);
+      letter-spacing: -.03em;
+    }
+    .section-title p { max-width: 680px; margin: 8px 0 0; color: var(--muted); }
+
+    .intro-box {
+      padding: 24px;
+      background: linear-gradient(135deg, rgba(255,255,255,.9), rgba(219,231,230,.5));
+      border-radius: 24px;
+      border: 1px solid rgba(61,107,116,.15);
+    }
+
+    .english {
+      font-size: clamp(1.1rem, 2.1vw, 1.4rem);
+      font-weight: 650;
+      letter-spacing: -.01em;
+      color: #241b17;
+    }
+
+    .translation { margin-top: 8px; color: var(--muted); }
+
+    .controls { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .btn.primary { background: var(--accent); color: white; }
+    .btn.secondary { background: var(--green-soft); color: #405b3c; }
+    .btn.ghost { background: rgba(255,255,255,.8); color: var(--accent-dark); border: 1px solid rgba(61,107,116,.2); }
+
+    .voice-settings {
+      display: grid;
+      grid-template-columns: 1fr 150px 150px;
+      gap: 10px;
+      align-items: end;
+      margin-top: 18px;
+    }
+    .voice-settings label { margin-top: 0; }
+    label { display: block; font-size: .88rem; font-weight: 850; color: var(--accent-dark); margin: 14px 0 7px; }
+    select, input[type="text"] {
+      width: 100%; padding: 13px 14px; border-radius: 15px;
+      border: 1px solid rgba(61,107,116,.22); background: rgba(255,255,255,.86);
+      color: var(--ink); font: inherit; outline: none;
+    }
+    select:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(61,107,116,.13); }
+    input[type="range"] { width: 100%; accent-color: var(--accent); }
+    .tiny { font-size: .88rem; color: var(--muted); margin-top: 12px; }
+
+    .note {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(231, 238, 228, .8);
+      color: #405b3c;
+      font-weight: 650;
+    }
+
+    .icon-btn {
+      appearance: none; border: 0; width: 40px; height: 40px; border-radius: 50%;
+      cursor: pointer; background: var(--accent-soft); color: var(--accent-dark);
+      font-size: 1.05rem; flex: none;
+      transition: transform .18s ease, background .18s ease, color .18s ease;
+    }
+    .icon-btn:hover { transform: scale(1.05); background: var(--accent); color: white; }
+    .icon-btn:disabled { opacity: .4; cursor: not-allowed; }
+
+    /* function cards: PT trigger -> EN alternatives */
+    .fn-grid { display: grid; gap: 16px; }
+    .fn-card {
+      padding: 20px 22px;
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,.76);
+      border: 1px solid rgba(255,255,255,.88);
+    }
+    .fn-trigger {
+      display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px;
+      background: none; border: 0; padding: 0; text-align: left; width: 100%;
+      font: inherit; color: inherit;
+    }
+    body.practice .fn-trigger { cursor: pointer; }
+    .fn-num {
+      font-size: .74rem; font-weight: 900; text-transform: uppercase; letter-spacing: .07em;
+      color: var(--accent); flex: none;
+    }
+    .fn-pt { font-family: var(--font-title); font-style: italic; font-size: 1.14rem; color: var(--ink); }
+    .fn-reveal-hint {
+      margin-left: auto; font-size: .7rem; font-weight: 800; text-transform: uppercase;
+      letter-spacing: .06em; color: var(--gold); opacity: 0; flex: none;
+    }
+    body.practice .fn-reveal-hint { opacity: 1; }
+    body.practice .fn-card.revealed .fn-reveal-hint { opacity: 0; }
+
+    .fn-answers { display: grid; gap: 12px; transition: filter .2s ease, opacity .2s ease; }
+    body.practice .fn-card:not(.revealed) .fn-answers {
+      filter: blur(5px); opacity: .32; pointer-events: none; user-select: none;
+    }
+
+    .phrase-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .phrase-text { font-weight: 650; }
+    .reg-tag {
+      display: inline-flex; padding: 4px 10px; border-radius: 999px;
+      background: var(--green-soft); color: #496744; font-weight: 800;
+      font-size: .72rem; text-transform: uppercase; letter-spacing: .05em;
+    }
+    .nuance { margin: 0 0 0 50px; color: var(--muted); font-size: .89rem; font-style: italic; }
+
+    .arc-note { margin-bottom: 18px; }
+
+    .table-wrap { overflow-x: auto; border-radius: var(--radius-md); border: 1px solid rgba(61,107,116,.15); }
+    table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+    thead th {
+      text-align: left; background: var(--accent-soft); color: var(--accent-dark);
+      text-transform: uppercase; letter-spacing: .05em; font-size: .72rem;
+      padding: 10px 12px;
+    }
+    tbody td { padding: 10px 12px; border-top: 1px solid rgba(61,107,116,.12); vertical-align: top; }
+    tbody td:first-child { font-style: italic; white-space: nowrap; color: var(--ink); }
+    tbody td:last-child { color: var(--muted); }
+
+    .footer { text-align: center; color: var(--muted); margin-top: 32px; font-size: .95rem; }
+
+    @media (max-width: 900px) {
+      .voice-settings { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      .shell { width: min(calc(100% - 20px), var(--max)); padding-top: 12px; }
+      .hero, .section { border-radius: 22px; }
+      .toolbar { top: 0; border-radius: 0 0 20px 20px; margin-left: -10px; margin-right: -10px; }
+      .fn-card, .intro-box { border-radius: 17px; }
+      .toolbar a, .toolbar button, .btn { font-size: .88rem; padding: 9px 12px; }
+      .nuance { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <a class="back" href="index.html">← Voltar para Inglês Avançado</a>
+
+    <header class="hero" id="topo">
+      <span class="eyebrow">🗣️ English Teacher Language • a fala que conduz a aula</span>
+      <h1>A fala que conduz a sua aula</h1>
+      <p>
+        Sua aula é 100% falada e é você quem guia cada passo — abrir, instruir, corrigir,
+        incentivar, encerrar. Este treinamento não ensina vocabulário novo: ele te dá
+        variedade nas falas que você usa pra conduzir a aluna, pra você parar de recorrer
+        sempre à mesma frase.
+      </p>
+      <div class="insight">
+        <p><strong>O ponto principal:</strong> a maior parte da repetição não acontece na
+        abertura nem no encerramento — acontece no meio da aula, no "loop" que se repete
+        várias vezes por sessão (instruir, checar, incentivar, corrigir, explicar, pedir
+        repetição, elogiar, transicionar). É ali que vale mais a pena variar de propósito.</p>
+      </div>
+    </header>
+
+    <nav class="toolbar" aria-label="Navegação do treinamento">
+      <a href="#apresentacao">Apresentação</a>
+      <a href="#abertura">Abertura</a>
+      <a href="#durante">Durante a aula</a>
+      <a href="#encerramento">Encerramento</a>
+      <a href="#ficha">Ficha rápida</a>
+      <button id="practiceBtn" onclick="togglePractice()">🎴 Modo prática</button>
+      <button class="stop" onclick="stopAudio()">■ Parar áudio</button>
+    </nav>
+
+    <section class="section" id="apresentacao">
+      <div class="section-title">
+        <h2>1. Apresentação — só para ouvir</h2>
+        <p>Essa parte não é para decorar. É um exemplo de abertura de aula encadeando várias
+        falas naturais em sequência — ouça algumas vezes e repita em voz alta (shadowing)
+        para pegar o ritmo, antes de estudar as alternativas separadas mais abaixo.</p>
+      </div>
+
+      <div class="intro-box">
+        <div class="english" id="introText">Hey, so how's it going? Anything new since last time? Okay, here's the plan for today — we're going to focus on speaking practice, and I thought we'd dive into a few new expressions along the way. Now, go ahead and try describing your week for me. Take your time, there's no rush. Does that make sense so far? Great, let's get started.</div>
+        <div class="translation">Oi, e aí, como você está? Alguma novidade desde a última vez? Ok, esse é o plano de hoje — vamos focar em prática de fala, e eu pensei em mergulharmos em algumas expressões novas pelo caminho. Agora, vai em frente e tenta descrever sua semana pra mim. Sem pressa, não tem problema. Faz sentido até aqui? Ótimo, vamos começar.</div>
+
+        <div class="controls">
+          <button class="btn primary" onclick="speakById('introText')">🔊 Ouvir normal</button>
+          <button class="btn secondary" onclick="speakById('introText', 0.72)">🐢 Ouvir devagar</button>
+          <button class="btn ghost" onclick="pauseAudio()">⏸ Pausar</button>
+          <button class="btn ghost" onclick="resumeAudio()">▶ Continuar</button>
+        </div>
+
+        <div class="voice-settings" aria-label="Configurações de voz">
+          <div>
+            <label for="voiceSelect">Voz em inglês disponível no seu navegador</label>
+            <select id="voiceSelect"></select>
+          </div>
+          <div>
+            <label for="rateRange">Velocidade</label>
+            <input id="rateRange" type="range" min="0.55" max="1.15" step="0.05" value="0.9" />
+          </div>
+          <div>
+            <label for="pitchRange">Tom</label>
+            <input id="pitchRange" type="range" min="0.7" max="1.25" step="0.05" value="1" />
+          </div>
+        </div>
+        <p class="tiny">Observação: a qualidade da voz depende do navegador e das vozes instaladas no dispositivo.</p>
+      </div>
+    </section>
+
+    <section class="section" id="abertura">
+      <div class="section-title">
+        <h2>2. Abrindo a aula</h2>
+        <p>O contato inicial e a apresentação do plano — acontece uma vez, no começo. Baixa repetição, mas define o tom da sessão inteira.</p>
+      </div>
+      <div class="fn-grid">
+
+        <article class="fn-card" id="fn-1">
+          <button class="fn-trigger" type="button">
+            <span class="fn-num">01</span>
+            <span class="fn-pt">"Como você está? O que você fez essa semana?"</span>
+            <span class="fn-reveal-hint">toque para praticar</span>
+          </button>
+          <div class="fn-answers">
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('So, how\'s it going?')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">So, how's it going?</span>
+                <span class="reg-tag">informal</span>
+              </div>
+              <p class="nuance">A abertura mais rápida e automática — funciona sempre.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('What have you been up to lately?')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">What have you been up to lately?</span>
+                <span class="reg-tag">neutro</span>
+              </div>
+              <p class="nuance">Convida a contar mais do que um "como você está".</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Catch me up, what happened this week?')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Catch me up — what happened this week?</span>
+                <span class="reg-tag">idiomática</span>
+              </div>
+              <p class="nuance">Ótima quando a aluna sempre tem uma novidade pra contar.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Anything new since last time?')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Anything new since last time?</span>
+                <span class="reg-tag">informal</span>
+              </div>
+              <p class="nuance">Boa quando a semana foi mais parada — não força uma resposta longa.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="fn-card" id="fn-2">
+          <button class="fn-trigger" type="button">
+            <span class="fn-num">02</span>
+            <span class="fn-pt">"Hoje a gente vai..."</span>
+            <span class="fn-reveal-hint">toque para praticar</span>
+          </button>
+          <div class="fn-answers">
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Here\'s the plan for today.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Here's the plan for today.</span>
+                <span class="reg-tag">neutro</span>
+              </div>
+              <p class="nuance">A opção mais segura pra abrir a agenda da aula.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('So, today we\'re going to focus on speaking practice.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">So, today we're going to focus on ___.</span>
+                <span class="reg-tag">neutro</span>
+              </div>
+              <p class="nuance">Deixa claro o foco específico da sessão.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('I thought we\'d dive into phrasal verbs today.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">I thought we'd dive into ___ today.</span>
+                <span class="reg-tag">idiomática</span>
+              </div>
+              <p class="nuance">Dá leveza e energia até para temas mais densos.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Let\'s tackle the past tense today.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Let's tackle ___ today.</span>
+                <span class="reg-tag">neutro</span>
+              </div>
+              <p class="nuance">Boa para revisões, provas ou pontos que exigem mais esforço.</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section" id="durante">
+      <div class="section-title">
+        <h2>3. Durante a aula — o loop que se repete</h2>
+        <p>Instruir, checar, incentivar, corrigir, explicar, pedir repetição, elogiar,
+        transicionar, controlar o tempo, lidar com hesitação — tudo isso se repete várias
+        vezes por aula. Aqui está a maior parte da sua repetição, e o maior ganho de variar.</p>
+      </div>
+      <div class="fn-grid">
+
+        <article class="fn-card" id="fn-3">
+          <button class="fn-trigger" type="button">
+            <span class="fn-num">03</span>
+            <span class="fn-pt">"Agora eu quero que você..."</span>
+            <span class="fn-reveal-hint">toque para praticar</span>
+          </button>
+          <div class="fn-answers">
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Now I want you to describe the picture.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Now I want you to ___.</span>
+                <span class="reg-tag">neutro</span>
+              </div>
+              <p class="nuance">Direta, sem rodeios — a base segura.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Go ahead and try the next question.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Go ahead and try ___.</span>
+                <span class="reg-tag">informal</span>
+              </div>
+              <p class="nuance">Convida em vez de mandar — soa mais colaborativo.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Here\'s what I\'d like you to do next.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Here's what I'd like you to do next.</span>
+                <span class="reg-tag">neutro</span>
+              </div>
+              <p class="nuance">Boa introdução antes de uma instrução mais longa.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Your turn, give it a try.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Your turn — give it a try.</span>
+                <span class="reg-tag">informal</span>
+              </div>
+              <p class="nuance">Curta, ótima pra devolver a palavra rapidamente.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="fn-card" id="fn-4">
+          <button class="fn-trigger" type="button">
+            <span class="fn-num">04</span>
+            <span class="fn-pt">"Entendeu? Ficou claro?"</span>
+            <span class="fn-reveal-hint">toque para praticar</span>
+          </button>
+          <div class="fn-answers">
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Does that make sense?')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Does that make sense?</span>
+                <span class="reg-tag">neutro</span>
+              </div>
+              <p class="nuance">A mais versátil — funciona em qualquer explicação.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Are you with me so far?')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Are you with me so far?</span>
+                <span class="reg-tag">informal</span>
+              </div>
+              <p class="nuance">Boa no meio de uma explicação mais longa.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('You following me okay?')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">You following me okay?</span>
+                <span class="reg-tag">idiomática · muito informal</span>
+              </div>
+              <p class="nuance">Casual de propósito — soa como conversa, não como prova.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Any questions before we start?')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Any questions before we start?</span>
+                <span class="reg-tag">neutro</span>
+              </div>
+              <p class="nuance">Melhor logo antes de uma atividade começar.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="fn-card" id="fn-5">
+          <button class="fn-trigger" type="button">
+            <span class="fn-num">05</span>
+            <span class="fn-pt">"Fala mais sobre isso" / "Continua"</span>
+            <span class="fn-reveal-hint">toque para praticar</span>
+          </button>
+          <div class="fn-answers">
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Tell me more about that.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Tell me more about that.</span>
+                <span class="reg-tag">neutro</span>
+              </div>
+              <p class="nuance">O clássico — continua ótimo, só não deixe ser o único.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Go on, I\'m listening.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Go on, I'm listening.</span>
+                <span class="reg-tag">informal</span>
+              </div>
+              <p class="nuance">Dá espaço sem pressionar a aluna a se apressar.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('What else comes to mind?')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">What else comes to mind?</span>
+                <span class="reg-tag">neutro</span>
+              </div>
+              <p class="nuance">Abre um novo ângulo quando a ideia já foi encerrada.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Keep going, you\'re doing great.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Keep going — you're doing great.</span>
+                <span class="reg-tag">informal</span>
+              </div>
+              <p class="nuance">Junta incentivo com elogio na mesma frase.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="fn-card" id="fn-6">
+          <button class="fn-trigger" type="button">
+            <span class="fn-num">06</span>
+            <span class="fn-pt">"Só uma correção rapidinha..."</span>
+            <span class="fn-reveal-hint">toque para praticar</span>
+          </button>
+          <div class="fn-answers">
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Quick fix, try that again.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Quick fix — try that again.</span>
+                <span class="reg-tag">informal</span>
+              </div>
+              <p class="nuance">Rápida, não quebra o clima da conversa.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Almost, it\'s actually went, not goed.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Almost — it's actually ___.</span>
+                <span class="reg-tag">neutro</span>
+              </div>
+              <p class="nuance">Reconhece o esforço antes de apontar o erro.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Small correction here, the stress falls on the first syllable.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Small correction here...</span>
+                <span class="reg-tag">neutro</span>
+              </div>
+              <p class="nuance">Neutra, funciona bem para erros de pronúncia ou gramática.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Let\'s tweak that a little.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Let's tweak that a little.</span>
+                <span class="reg-tag">idiomática</span>
+              </div>
+              <p class="nuance">Soa bem mais leve do que "corrigir" — bom pra alunas mais inseguras.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="fn-card" id="fn-7">
+          <button class="fn-trigger" type="button">
+            <span class="fn-num">07</span>
+            <span class="fn-pt">"Deixa eu explicar rapidinho"</span>
+            <span class="fn-reveal-hint">toque para praticar</span>
+          </button>
+          <div class="fn-answers">
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Let me break that down for you.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Let me break that down for you.</span>
+                <span class="reg-tag">idiomática</span>
+              </div>
+              <p class="nuance">Sinaliza que você vai dividir a explicação em partes menores.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Here\'s the deal with this one, it\'s an exception.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Here's the deal with this one...</span>
+                <span class="reg-tag">idiomática · informal</span>
+              </div>
+              <p class="nuance">Ótima para pontos irregulares ou exceções da língua.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Let me walk you through it.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Let me walk you through it.</span>
+                <span class="reg-tag">idiomática</span>
+              </div>
+              <p class="nuance">Passo a passo, boa para regras com várias etapas.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Quick explanation, then we\'ll move on.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Quick explanation, then we'll move on.</span>
+                <span class="reg-tag">neutro</span>
+              </div>
+              <p class="nuance">Deixa claro que a explicação será breve.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="fn-card" id="fn-8">
+          <button class="fn-trigger" type="button">
+            <span class="fn-num">08</span>
+            <span class="fn-pt">"Repete, por favor" / "Tenta de novo"</span>
+            <span class="fn-reveal-hint">toque para praticar</span>
+          </button>
+          <div class="fn-answers">
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Say that again for me?')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Say that again for me?</span>
+                <span class="reg-tag">informal</span>
+              </div>
+              <p class="nuance">Direta, para quando você não ouviu bem ou quer reforçar a fala.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('One more time, please.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">One more time, please.</span>
+                <span class="reg-tag">neutro</span>
+              </div>
+              <p class="nuance">Boa para prática de pronúncia repetida.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Give it another shot.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Give it another shot.</span>
+                <span class="reg-tag">idiomática · informal</span>
+              </div>
+              <p class="nuance">Encoraja tentar de novo sem soar como cobrança.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Try rephrasing that.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Try rephrasing that.</span>
+                <span class="reg-tag">neutro</span>
+              </div>
+              <p class="nuance">Use quando o problema é estrutura da frase, não pronúncia.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="fn-card" id="fn-9">
+          <button class="fn-trigger" type="button">
+            <span class="fn-num">09</span>
+            <span class="fn-pt">"Muito bem!"</span>
+            <span class="fn-reveal-hint">toque para praticar</span>
+          </button>
+          <div class="fn-answers">
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Nice one!')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Nice one!</span>
+                <span class="reg-tag">informal</span>
+              </div>
+              <p class="nuance">Curta e natural — o substituto mais fácil pra "very good".</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('That\'s it exactly.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">That's it exactly.</span>
+                <span class="reg-tag">neutro</span>
+              </div>
+              <p class="nuance">Confirma que a aluna acertou o alvo, não só "está bom".</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('You nailed it.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">You nailed it.</span>
+                <span class="reg-tag">idiomática · informal</span>
+              </div>
+              <p class="nuance">Elogio forte, ótimo para acertos que exigiram esforço.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('I love that, perfect.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">I love that — perfect.</span>
+                <span class="reg-tag">informal · caloroso</span>
+              </div>
+              <p class="nuance">Mais afetiva — boa para momentos de vitória da aluna.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="fn-card" id="fn-10">
+          <button class="fn-trigger" type="button">
+            <span class="fn-num">10</span>
+            <span class="fn-pt">"Vamos para a próxima parte"</span>
+            <span class="fn-reveal-hint">toque para praticar</span>
+          </button>
+          <div class="fn-answers">
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Let\'s move on to the next part.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Let's move on to ___.</span>
+                <span class="reg-tag">neutro</span>
+              </div>
+              <p class="nuance">A transição mais segura e comum.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Okay, shifting gears here.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Okay, shifting gears here.</span>
+                <span class="reg-tag">idiomática · informal</span>
+              </div>
+              <p class="nuance">Sinaliza uma mudança maior de ritmo ou tipo de atividade.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Now let\'s switch things up.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Now let's switch things up.</span>
+                <span class="reg-tag">idiomática · informal</span>
+              </div>
+              <p class="nuance">Boa quando você quer dar uma quebrada no clima da aula.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Moving right along.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Moving right along...</span>
+                <span class="reg-tag">informal</span>
+              </div>
+              <p class="nuance">Leve, boa entre atividades curtas em sequência.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="fn-card" id="fn-11">
+          <button class="fn-trigger" type="button">
+            <span class="fn-num">11</span>
+            <span class="fn-pt">"Estamos com pouco tempo" / "Vamos apressar"</span>
+            <span class="fn-reveal-hint">toque para praticar</span>
+          </button>
+          <div class="fn-answers">
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('We\'re a bit short on time.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">We're a bit short on time.</span>
+                <span class="reg-tag">neutro</span>
+              </div>
+              <p class="nuance">Avisa sem alarmar.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Let\'s pick up the pace a little.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Let's pick up the pace a little.</span>
+                <span class="reg-tag">idiomática</span>
+              </div>
+              <p class="nuance">Pede mais agilidade sem soar como pressão.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('We need to wrap this up soon.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">We need to wrap this up soon.</span>
+                <span class="reg-tag">neutro</span>
+              </div>
+              <p class="nuance">Prepara a aluna para o fim de uma atividade específica.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Time\'s almost up for this one.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Time's almost up for this one.</span>
+                <span class="reg-tag">neutro</span>
+              </div>
+              <p class="nuance">Bom aviso final, sem soar brusco.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="fn-card" id="fn-12">
+          <button class="fn-trigger" type="button">
+            <span class="fn-num">12</span>
+            <span class="fn-pt">"Pode falar, não tem problema errar"</span>
+            <span class="fn-reveal-hint">toque para praticar</span>
+          </button>
+          <div class="fn-answers">
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Take your time.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Take your time.</span>
+                <span class="reg-tag">neutro</span>
+              </div>
+              <p class="nuance">O básico que nunca falha — funciona em qualquer hesitação.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('No rush, just give it a try.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">No rush — just give it a try.</span>
+                <span class="reg-tag">informal</span>
+              </div>
+              <p class="nuance">Tira a pressão do tempo antes de pedir a tentativa.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('It\'s okay to make mistakes.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">It's okay to make mistakes.</span>
+                <span class="reg-tag">neutro</span>
+              </div>
+              <p class="nuance">Nomeia o medo diretamente, em vez de só incentivar.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Have a go, worst case we fix it together.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Have a go — worst case, we fix it together.</span>
+                <span class="reg-tag">idiomática · informal</span>
+              </div>
+              <p class="nuance">Deixa claro que o erro tem solução conjunta, não julgamento.</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section" id="encerramento">
+      <div class="section-title">
+        <h2>4. Encerrando a aula</h2>
+        <p>O fechamento e a lição de casa — como a abertura, acontece uma vez, mas fica na memória da aluna como o último tom da sessão.</p>
+      </div>
+      <div class="fn-grid">
+
+        <article class="fn-card" id="fn-13">
+          <button class="fn-trigger" type="button">
+            <span class="fn-num">13</span>
+            <span class="fn-pt">"Terminando por hoje..." / "Para casa..."</span>
+            <span class="fn-reveal-hint">toque para praticar</span>
+          </button>
+          <div class="fn-answers">
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('Let\'s wrap up for today.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">Let's wrap up for today.</span>
+                <span class="reg-tag">neutro</span>
+              </div>
+              <p class="nuance">A forma mais versátil de sinalizar o fim da sessão.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('That\'s it for today, great job.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">That's it for today — great job.</span>
+                <span class="reg-tag">informal</span>
+              </div>
+              <p class="nuance">Fecha com um elogio geral da aula inteira.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('For homework, I\'d like you to write five sentences.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">For homework, I'd like you to ___.</span>
+                <span class="reg-tag">neutro</span>
+              </div>
+              <p class="nuance">Introdução padrão e clara para a tarefa de casa.</p>
+            </div>
+            <div>
+              <div class="phrase-row">
+                <button class="icon-btn" onclick="speak('See you next time, you did really well today.')" aria-label="Ouvir pronúncia">🔊</button>
+                <span class="phrase-text">See you next time — you did really well today.</span>
+                <span class="reg-tag">informal · caloroso</span>
+              </div>
+              <p class="nuance">Despedida mais pessoal, boa pra fechar com afeto.</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section" id="ficha">
+      <div class="section-title">
+        <h2>5. Ficha rápida de consulta</h2>
+        <p>Uma frase-gatilho, três alternativas — para olhar rápido antes ou durante uma aula. Numeradas só para referência, não como ordem obrigatória.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Gatilho (PT)</th><th>Alternativas rápidas</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>01 · Como você está?</td><td>So, how's it going? · What have you been up to? · Catch me up</td></tr>
+            <tr><td>02 · Hoje a gente vai...</td><td>Here's the plan · we're going to focus on · let's dive into / tackle</td></tr>
+            <tr><td>03 · Agora eu quero que você...</td><td>Now I want you to · Go ahead and try · Your turn</td></tr>
+            <tr><td>04 · Entendeu?</td><td>Does that make sense? · Are you with me? · Any questions?</td></tr>
+            <tr><td>05 · Fala mais sobre isso</td><td>Tell me more · Go on, I'm listening · What else comes to mind?</td></tr>
+            <tr><td>06 · Só uma correção rapidinha</td><td>Quick fix · Almost, it's actually · Let's tweak that</td></tr>
+            <tr><td>07 · Deixa eu explicar</td><td>Let me break that down · Here's the deal · Let me walk you through it</td></tr>
+            <tr><td>08 · Repete / tenta de novo</td><td>Say that again? · One more time · Give it another shot</td></tr>
+            <tr><td>09 · Muito bem!</td><td>Nice one! · That's it exactly · You nailed it</td></tr>
+            <tr><td>10 · Vamos para a próxima parte</td><td>Let's move on to · Shifting gears · Switch things up</td></tr>
+            <tr><td>11 · Estamos com pouco tempo</td><td>A bit short on time · Pick up the pace · Wrap this up soon</td></tr>
+            <tr><td>12 · Pode falar, sem problema errar</td><td>Take your time · No rush · It's okay to make mistakes</td></tr>
+            <tr><td>13 · Terminando / para casa</td><td>Let's wrap up · That's it for today · For homework...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="footer">
+      Feito para desautomatizar sua fala de professora: uma função por semana, ouvida, repetida e praticada em aula real.
+    </footer>
+  </main>
+
+  <script>
+    let voices = [];
+
+    function populateVoices() {
+      const select = document.getElementById('voiceSelect');
+      if (!select) return;
+      voices = window.speechSynthesis ? speechSynthesis.getVoices() : [];
+      const enVoices = voices.filter(v => v.lang && v.lang.toLowerCase().startsWith('en'));
+      select.innerHTML = '';
+      const source = enVoices.length ? enVoices : voices;
+      source.forEach((voice) => {
+        const option = document.createElement('option');
+        option.value = voice.name;
+        option.textContent = `${voice.name} (${voice.lang})`;
+        select.appendChild(option);
+      });
+      if (!source.length) {
+        const option = document.createElement('option');
+        option.value = '';
+        option.textContent = 'Voz padrão do navegador';
+        select.appendChild(option);
+      }
+    }
+
+    function selectedVoice() {
+      const select = document.getElementById('voiceSelect');
+      if (!select) return null;
+      return voices.find(v => v.name === select.value) || voices.find(v => v.lang && v.lang.toLowerCase().startsWith('en')) || null;
+    }
+
+    function speak(text, customRate) {
+      if (!('speechSynthesis' in window)) {
+        alert('Seu navegador não suporta leitura de texto por voz. Tente abrir no Chrome, Edge ou Safari atualizado.');
+        return;
+      }
+      const cleanText = String(text || '').trim();
+      if (!cleanText) return;
+      const utterance = new SpeechSynthesisUtterance(cleanText);
+      utterance.lang = 'en-US';
+      utterance.rate = customRate || Number(document.getElementById('rateRange')?.value || 0.9);
+      utterance.pitch = Number(document.getElementById('pitchRange')?.value || 1);
+      const voice = selectedVoice();
+      if (voice) utterance.voice = voice;
+      speechSynthesis.cancel();
+      speechSynthesis.speak(utterance);
+    }
+
+    function speakById(id, customRate) {
+      const el = document.getElementById(id);
+      if (el) speak(el.innerText, customRate);
+    }
+
+    function stopAudio() { if ('speechSynthesis' in window) speechSynthesis.cancel(); }
+    function pauseAudio() { if ('speechSynthesis' in window) speechSynthesis.pause(); }
+    function resumeAudio() { if ('speechSynthesis' in window) speechSynthesis.resume(); }
+
+    if ('speechSynthesis' in window) {
+      populateVoices();
+      speechSynthesis.onvoiceschanged = populateVoices;
+    } else {
+      document.querySelectorAll('.icon-btn').forEach(btn => {
+        btn.disabled = true;
+        btn.title = 'Áudio não suportado neste navegador';
+      });
+    }
+
+    function togglePractice() {
+      const on = document.body.classList.toggle('practice');
+      document.getElementById('practiceBtn').classList.toggle('is-on', on);
+      document.querySelectorAll('.fn-card.revealed').forEach(f => f.classList.remove('revealed'));
+    }
+
+    document.querySelectorAll('.fn-trigger').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (!document.body.classList.contains('practice')) return;
+        btn.closest('.fn-card').classList.toggle('revealed');
+      });
+    });
+  </script>
+</body>
+</html>
