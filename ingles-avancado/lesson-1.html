@@ -295,6 +295,33 @@
     tbody td:first-child { font-style: italic; white-space: nowrap; color: var(--ink); }
     tbody td:last-child { color: var(--muted); }
 
+    .quiz-list { display: grid; gap: 14px; }
+    .quiz-item {
+      padding: 18px 20px;
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,.76);
+      border: 1px solid rgba(255,255,255,.88);
+    }
+    .quiz-item strong { display: block; margin-bottom: 6px; }
+    .quiz-item .quiz-sub { display: block; margin-bottom: 12px; color: var(--muted); font-size: .88rem; }
+    .choices { display: flex; flex-wrap: wrap; gap: 8px; }
+    .choice {
+      border: 1px solid rgba(61,107,116,.22);
+      background: rgba(255,255,255,.8);
+      color: var(--ink);
+      cursor: pointer;
+      padding: 9px 13px;
+      border-radius: 999px;
+      font-weight: 700;
+      font: inherit;
+      transition: transform .16s ease, background .16s ease, color .16s ease;
+    }
+    .choice:hover:not(:disabled) { transform: translateY(-1px); background: var(--accent-soft); }
+    .choice:disabled { cursor: default; }
+    .choice.correct { background: var(--green); color: white; border-color: var(--green); }
+    .choice.wrong { background: #f3d5d1; color: #7d3737; border-color: #e2aaa3; }
+    .feedback { margin-top: 10px; color: var(--muted); font-weight: 650; font-size: .92rem; }
+
     .footer { text-align: center; color: var(--muted); margin-top: 32px; font-size: .95rem; }
 
     @media (max-width: 900px) {
@@ -338,6 +365,7 @@
       <a href="#durante">Durante a aula</a>
       <a href="#encerramento">Encerramento</a>
       <a href="#ficha">Ficha rápida</a>
+      <a href="#quiz">Quiz</a>
       <button id="practiceBtn" onclick="togglePractice()">🎴 Modo prática</button>
       <button class="stop" onclick="stopAudio()">■ Parar áudio</button>
     </nav>
@@ -986,6 +1014,19 @@
       </div>
     </section>
 
+    <section class="section" id="quiz">
+      <div class="section-title">
+        <h2>6. Quiz: troque o verbo por um phrasal verb</h2>
+        <p>Os 7 verbos centrais e os 12 verbos bônus para professoras do seu material de
+        vocabulário — agora como treino ativo. Leia a frase, escolha o phrasal verb que
+        substitui melhor o verbo repetido e ouça a resposta certa em voz alta.</p>
+      </div>
+      <div class="quiz-list" id="quizList"></div>
+      <div class="controls">
+        <button class="btn secondary" onclick="resetQuiz()">Refazer quiz</button>
+      </div>
+    </section>
+
     <footer class="footer">
       Feito para desautomatizar sua fala de professora: uma função por semana, ouvida, repetida e praticada em aula real.
     </footer>
@@ -1069,6 +1110,81 @@
         btn.closest('.fn-card').classList.toggle('revealed');
       });
     });
+
+    const quizData = [
+      { verb: 'UNDERSTAND', cue: "Com a prática, você vai ______ esses phrasal verbs rapidinho.", answer: 'get the hang of', choices: ['get the hang of', 'zero in on', 'iron out'], note: 'get the hang of = pegar o jeito de uma habilidade que se aprende com prática.' },
+      { verb: 'ANALYZE', cue: "Vamos ______ essa frase pedaço por pedaço.", answer: 'break down', choices: ['break down', 'kick off', 'count on'], note: 'break down = dividir algo complexo em partes menores para ensinar.' },
+      { verb: 'START', cue: "Vamos ______ a aula com um aquecimento rápido.", answer: 'kick off', choices: ['kick off', 'wrap up', 'pick up on'], note: 'kick off = dar energia ao início de uma aula, reunião ou atividade.' },
+      { verb: 'FINISH', cue: "Vamos ______ por aqui e revisar isso na próxima aula.", answer: 'wrap up', choices: ['wrap up', 'break down', 'look over'], note: 'wrap up = encerrar de forma organizada — o mais versátil dos substitutos de finish.' },
+      { verb: 'SAY', cue: "Quero ______ um erro comum que várias alunas cometem aqui.", answer: 'point out', choices: ['point out', 'bear in mind', 'think up'], note: 'point out = destacar algo importante, ótimo para correções e observações.' },
+      { verb: 'NEED', cue: "Hoje a gente está um pouco ______ tempo, então vamos direto ao ponto.", answer: 'short on', choices: ['short on', 'zero in on', 'get through'], note: 'short on time = falta de algo específico e quantificável, como tempo.' },
+      { verb: 'VERIFY', cue: "______ suas respostas antes de a gente continuar.", answer: 'look over', choices: ['look over', 'walk through', 'flag'], note: 'look over = revisar rapidamente com os olhos algo já pronto.' },
+      { verb: 'EXPLAIN', cue: "Deixa eu te ______ isso passo a passo.", answer: 'walk through', choices: ['walk through', 'iron out', 'pull off'], note: 'walk (someone) through = explicar passo a passo, sem pular etapas.' },
+      { verb: 'CORRECT / FIX', cue: "Preciso ______ uns detalhes pequenos nessa frase.", answer: 'iron out', choices: ['iron out', 'work on', 'click'], note: 'iron out = resolver detalhes ou problemas pequenos, sem drama.' },
+      { verb: 'IMPROVE', cue: "Essa semana, vamos ______ a sua pronúncia do som “th”.", answer: 'work on', choices: ['work on', 'pick up on', 'count on'], note: 'work on = trabalhar em algo específico, de forma contínua.' },
+      { verb: 'NOTICE', cue: "Ela conseguiu ______ um detalhe bem sutil na frase.", answer: 'pick up on', choices: ['pick up on', 'think up', 'flag'], note: 'pick up on = perceber um detalhe sutil que passaria despercebido.' },
+      { verb: 'REALIZE', cue: "De repente, tudo ______ pra ela.", answer: 'click', choices: ['click', 'bear in mind', 'zero in on'], note: 'click = quando algo “faz sentido” de repente, sem esforço consciente.' },
+      { verb: 'FOCUS (ON)', cue: "Vamos ______ só nesse ponto específico da gramática.", answer: 'zero in on', choices: ['zero in on', 'pull off', 'short on'], note: 'zero in on = focar bem específico em algo, deixando o resto de lado.' },
+      { verb: 'MANAGE', cue: "Ela conseguiu ______ uma apresentação inteira em inglês, mesmo nervosa.", answer: 'pull off', choices: ['pull off', 'get through', 'break down'], note: 'pull off = conseguir algo difícil, contra as expectativas.' },
+      { verb: 'DEAL WITH', cue: "Ela sempre consegue ______ as provas mais difíceis sem travar.", answer: 'get through', choices: ['get through', 'kick off', 'work on'], note: 'get through = atravessar algo difícil até o fim.' },
+      { verb: 'KEEP IN MIND', cue: "Só ______ que essa regra tem três exceções.", answer: 'bear in mind', choices: ['bear in mind', 'flag', 'count on'], note: 'bear in mind = versão um pouco mais formal de “lembrar disso”.' },
+      { verb: 'POINT OUT', cue: "Vou só ______ isso aqui pra você revisar depois em casa.", answer: 'flag', choices: ['flag', 'point out', 'walk through'], note: 'flag = sinalizar algo para atenção depois — diferente de “point out”, que é na hora.' },
+      { verb: 'COME UP WITH', cue: "Preciso ______ uma atividade nova do zero pra aula de amanhã.", answer: 'think up', choices: ['think up', 'pick up on', 'iron out'], note: 'think up = inventar ou criar uma ideia do zero.' },
+      { verb: 'RELY ON', cue: "Nessa parte da aula, eu sempre ______ repetição espaçada pra fixar o conteúdo.", answer: 'count on', choices: ['count on', 'work on', 'wrap up'], note: 'count on = contar com algo ou alguém como apoio.' }
+    ];
+
+    function shuffle(array) {
+      const copy = array.slice();
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function renderQuiz() {
+      const list = document.getElementById('quizList');
+      if (!list) return;
+      list.innerHTML = '';
+      quizData.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.className = 'quiz-item';
+        div.innerHTML = `
+          <strong>${index + 1}. Verbo repetido: ${item.verb}</strong>
+          <span class="quiz-sub">${item.cue}</span>
+          <div class="choices">
+            ${shuffle(item.choices).map(choice => `<button class="choice" data-answer="${item.answer}" data-note="${item.note}" onclick="checkChoice(this)">${choice}</button>`).join('')}
+          </div>
+          <div class="feedback"></div>
+        `;
+        list.appendChild(div);
+      });
+    }
+
+    function checkChoice(button) {
+      const parent = button.closest('.quiz-item');
+      const buttons = parent.querySelectorAll('.choice');
+      const feedback = parent.querySelector('.feedback');
+      const answer = button.dataset.answer;
+      const note = button.dataset.note;
+      buttons.forEach(btn => {
+        btn.disabled = true;
+        if (btn.textContent === answer) btn.classList.add('correct');
+      });
+      if (button.textContent === answer) {
+        feedback.textContent = `Certo! ${note}`;
+      } else {
+        button.classList.add('wrong');
+        feedback.textContent = `Quase — a resposta certa é "${answer}". ${note}`;
+      }
+      speak(answer);
+    }
+
+    function resetQuiz() {
+      renderQuiz();
+    }
+
+    renderQuiz();
   </script>
 </body>
 </html>
